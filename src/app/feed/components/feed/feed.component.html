@@ -1,0 +1,46 @@
+<div *ngFor="let article of articles" class="mt-1 mt-sm-4">
+    <div class="d-flex mb-2">
+        <a class="me-auto" [routerLink]="['/profile', article.author.username]">
+            <img [src]="article.author.image" class="profile-pic me-2" />
+            <i>{{ article.author.username }}</i>
+        </a>
+        <button mat-stroked-button color="primary" class="fs-sm">
+            <ion-icon name="heart" class="me-1"></ion-icon
+            >{{ article.favoritesCount }}
+        </button>
+    </div>
+    <div class="line-clamp mb-2">
+        <span
+            [routerLink]="['/article', article.slug]"
+            class="fs-6 bold"
+            role="button"
+        >
+            {{ article.title }}
+        </span>
+    </div>
+    <div class="line-clamp mb-2">
+        <span>{{ article.description }}</span>
+    </div>
+    <div class="d-flex text-muted">
+        <i class="me-auto fs-sm">{{ article.updatedAt }}</i>
+        <mat-chips-list class="d-none d-sm-inline">
+            <mat-chip
+                *ngFor="let tag of article.tagList"
+                class="ms-2 fs-xs"
+                [routerLink]="['/tag-feed', tag]"
+            >
+                {{ tag }}
+            </mat-chip>
+        </mat-chips-list>
+    </div>
+    <hr />
+</div>
+<div class="mt-1">
+    <mat-paginator
+        [length]="total"
+        [pageSize]="size"
+        [pageSizeOptions]="options"
+        (page)="updateFeed($event)"
+        aria-label="Select page"
+    ></mat-paginator>
+</div>

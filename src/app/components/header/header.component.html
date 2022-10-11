@@ -1,0 +1,43 @@
+<mat-toolbar>
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex">
+                <span
+                    class="me-auto primary-text"
+                    [routerLink]="['/']"
+                    role="button"
+                    >Interface</span
+                >
+                <span class="sm-links">
+                    <a [routerLink]="['/']" class="d-none d-sm-inline">Home</a>
+
+                    <span *ngIf="!(isLogged$ | async); else login">
+                        <a [routerLink]="['/', 'login']">Sign in</a>
+                        <a [routerLink]="['/', 'register']">Sign up</a>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>
+
+<ng-template #login>
+    <a [routerLink]="['/editor']">Create</a>
+
+    <a [routerLink]="['/profile', [username$ | async]]">{{
+        username$ | async
+    }}</a>
+    <a [mat-menu-trigger-for]="options" mat-icon-button>
+        <ion-icon
+            name="menu"
+            style="font-size: x-large"
+            class="text-large"
+        ></ion-icon>
+    </a>
+</ng-template>
+
+<mat-menu #options>
+    <button mat-menu-item [routerLink]="['/settings']">Settings</button>
+    <button mat-menu-item (click)="onLogout()">Logout</button>
+    <button mat-menu-item>Dark mode</button>
+</mat-menu>

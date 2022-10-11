@@ -1,0 +1,63 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <div class="text-center fs-2 my-3">Update profile</div>
+
+            <div class="mb-4 ms-3" *ngIf="errors$ | async as errors">
+                <mc-valid-errors [errors]="errors"></mc-valid-errors>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="pt-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>URL of profile pic</mat-label>
+                    <input matInput type="text" formControlName="image" />
+                    <mat-error>Enter valid URL</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" formControlName="username" />
+                    <mat-error>Enter valid username</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Short bio</mat-label>
+                    <input matInput type="text" formControlName="bio" />
+                    <mat-error>Enter valid biography</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email" />
+                    <mat-error>Enter valid eamil</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input
+                        matInput
+                        type="password"
+                        formControlName="password"
+                    />
+                    <mat-error>Enter valid password</mat-error>
+                </mat-form-field>
+                <div class="text-end mt-2">
+                    <button
+                        mat-flat-button
+                        color="accent"
+                        [disabled]="isSubmitting$ | async"
+                    >
+                        UPDATE
+                    </button>
+                </div>
+            </form>
+
+            <div class="pt-4 ms-2">
+                <button
+                    mat-flat-button
+                    color="warn"
+                    [disabled]="isSubmitting$ | async"
+                    (click)="onLogout()"
+                >
+                    OR LOGOUT
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

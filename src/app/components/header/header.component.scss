@@ -1,0 +1,10 @@
+.sm-links {
+    a {
+        margin-left: 13px;
+        font-size: 13px;
+        color: gray;
+        &:hover {
+            color: black;
+        }
+    }
+}

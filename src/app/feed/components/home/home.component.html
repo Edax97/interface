@@ -1,0 +1,29 @@
+<div><mc-banner [display]="!(isLogged$ | async)"></mc-banner></div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-md-9 col-xl-7 mb-3">
+            <div>
+                <mc-toggler
+                    [page]="page"
+                    [tag]="tag"
+                    [isLogged]="isLogged$ | async"
+                ></mc-toggler>
+            </div>
+            <div class="mt-2">
+                <mc-feed
+                    [articles]="articles$ | async"
+                    [total]="total$ | async"
+                    (updatePage)="updatePage($event)"
+                ></mc-feed>
+            </div>
+        </div>
+        <div class="col-xl-1 d-none d-xl-block"></div>
+        <div class="col-12 col-md-3 col-xl-4">
+            <div>
+                <mc-tag-list [list]="tagList$ | async"></mc-tag-list>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4"></div>
+</div>

@@ -1,0 +1,10 @@
+<div class="mb-2">Discover more</div>
+
+<mat-chip-list>
+    <mat-chip
+        *ngFor="let tagName of list"
+        [routerLink]="['/tag-feed', tagName]"
+    >
+        <span role="button" class="fs-sm">{{ tagName }}</span>
+    </mat-chip>
+</mat-chip-list>

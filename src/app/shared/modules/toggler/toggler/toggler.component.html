@@ -1,0 +1,25 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a
+        mat-tab-link
+        [active]="page == 'feed'"
+        [routerLink]="isLogged ? ['/feed', 'feed'] : ['/login']"
+    >
+        For you
+    </a>
+    <a
+        mat-tab-link
+        [active]="page == 'articles' && tag == null"
+        [routerLink]="['/feed', 'articles']"
+    >
+        Global feed
+    </a>
+    <a
+        mat-tab-link
+        [active]="page == 'articles' && tag"
+        [routerLink]="['/tag-feed', tag]"
+        *ngIf="tag"
+    >
+        {{ '#' + tag }}
+    </a>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

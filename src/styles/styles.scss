@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*Bootstrap imports*/
+
+//Block
+@import 'bootstrap/scss/functions';
+@import 'variables';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+
+@import 'bootstrap/scss/containers'; // Add .container and .container-fluid classes
+@import 'bootstrap/scss/grid'; // Add the grid system
+@import 'bootstrap/scss/utilities'; // Configures the utility classes that should be generated
+@import 'bootstrap/scss/utilities/api'; // Generates the actual utility classes
+/**/
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+        color: inherit;
+    }
+}
+
+.fs-xs {
+    font-size: 11px;
+}
+
+.fs-sm {
+    font-size: 13px;
+}
+
+.bold {
+    font-weight: 600;
+}

@@ -1,0 +1,45 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <div class="text-center fs-2 my-3">Sign up</div>
+            <div class="text-center mb-4">
+                <a [routerLink]="['/auth/login']" class="primary-text"
+                    >Have an account?</a
+                >
+            </div>
+            <div class="mb-4 ms-3" *ngIf="errors$ | async as errors">
+                <mc-valid-errors [errors]="errors"></mc-valid-errors>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" formControlName="username" />
+                    <mat-error>Enter valid username</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email" />
+                    <mat-error>Enter valid eamil</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input
+                        matInput
+                        type="password"
+                        formControlName="password"
+                    />
+                    <mat-error>Enter valid password</mat-error>
+                </mat-form-field>
+                <div class="text-end mt-2">
+                    <button
+                        mat-flat-button
+                        color="primary"
+                        [disabled]="isSubmitting$ | async"
+                    >
+                        SIGN UP
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
