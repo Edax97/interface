@@ -9,7 +9,6 @@ import { getTagsAction } from '../../store/actions/getTags.actions'
 import {
     articlesCountSelector,
     currentArticlesSelector,
-    pageSelector,
     tagPageSelector,
     tagsSelector,
 } from '../../store/selectors'
@@ -25,6 +24,7 @@ export class HomeComponent implements OnInit {
     total$ = this.store.pipe(select(articlesCountSelector))
     isLogged$ = this.store.pipe(select(isLoggedSelector))
     tagList$ = this.store.pipe(select(tagsSelector))
+    tag$ = this.store.pipe(select(tagPageSelector))
 
     constructor(
         private store: Store<AppStateInterface>,

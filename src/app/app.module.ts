@@ -15,7 +15,8 @@ import { FetchUserModule } from './shared/modules/fetch-user/fetch-user.module'
 import { AuthModule } from './auth/auth.module'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service'
-import { FeedModule } from './feed/feed.module'
+import { FeedModule } from './feed/feed.module';
+import { ArticleModule } from './article/article.module'
 
 @NgModule({
     declarations: [AppComponent, HeaderComponent],
@@ -34,6 +35,7 @@ import { FeedModule } from './feed/feed.module'
         AuthModule,
         FeedModule,
         AppRoutingModule,
+        ArticleModule,
     ],
     providers: [
         {

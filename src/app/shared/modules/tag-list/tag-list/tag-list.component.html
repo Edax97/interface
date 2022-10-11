@@ -4,6 +4,8 @@
     <mat-chip
         *ngFor="let tagName of list"
         [routerLink]="['/tag-feed', tagName]"
+        color="accent"
+        [selected]="tag == tagName"
     >
         <span role="button" class="fs-sm">{{ tagName }}</span>
     </mat-chip>

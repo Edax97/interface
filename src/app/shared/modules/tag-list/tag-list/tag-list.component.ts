@@ -15,6 +15,7 @@ import {
 })
 export class TagListComponent implements OnInit {
     @Input() list: string[]
+    @Input() tag: string = ''
     @Output() tagFeedE = new EventEmitter<string>()
     constructor() {}
     getTagFeed(t: string) {

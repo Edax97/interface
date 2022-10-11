@@ -1,5 +1,3 @@
-import { CurrentUserInterface } from 'src/app/auth/types/current-user.interface'
-
 export interface ArticleInterface {
     author: {
         bio: string | null

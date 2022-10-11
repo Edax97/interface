@@ -21,7 +21,10 @@
         <div class="col-xl-1 d-none d-xl-block"></div>
         <div class="col-12 col-md-3 col-xl-4">
             <div>
-                <mc-tag-list [list]="tagList$ | async"></mc-tag-list>
+                <mc-tag-list
+                    [list]="tagList$ | async"
+                    [tag]="tag$ | async"
+                ></mc-tag-list>
             </div>
         </div>
     </div>

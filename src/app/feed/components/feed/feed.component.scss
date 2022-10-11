@@ -1,7 +1,3 @@
-.profile-pic {
-    border-radius: 50%;
-}
-
 .mat-stroked-button {
     padding: 0 6px;
     min-width: 48px;
@@ -15,4 +11,8 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+}
+.profile-pic {
+    border-radius: 50%;
+    height: 48px;
 }
