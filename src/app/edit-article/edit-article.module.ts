@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 import { editArticleFeatureKey, editArticleReducer } from './store/reducers'
@@ -15,6 +15,7 @@ import { EditFormModule } from '../shared/modules/edit-form/edit-form.module'
 import { PostArticleEffects } from './store/effects/post-article.effects'
 import { EditArticleService } from './services/edit-article.service'
 import { UpdateArticleEffects } from './store/effects/update-article.effects'
+import { AuthInterceptorService } from '../shared/services/auth-interceptor.service'
 
 const routes = [
     { path: '', component: NewArticleComponent },
@@ -37,7 +38,15 @@ const routes = [
         BackendErrorsModule,
         EditFormModule,
     ],
-    providers: [ArticleService, EditArticleService],
+    providers: [
+        ArticleService,
+        EditArticleService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true,
+        },
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EditArticleModule {}
