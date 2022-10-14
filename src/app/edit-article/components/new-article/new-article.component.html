@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 mt-5">
+            <mat-progress *ngIf="isLoading$ | async"></mat-progress>
+            <mc-edit-form
+                header="Tell your story"
+                [article]="article$"
+                [loading]="isLoading$"
+                (submit)="onSubmit($event)"
+            ></mc-edit-form>
+            <mc-valid-errors [errors]="errors$"></mc-valid-errors>
+        </div>
+    </div>
+</div>

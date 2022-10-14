@@ -1,5 +1,5 @@
-<div>
-    <li *ngFor="let e of errors" class="warn-text">
+<div *ngIf="errors$ | async as errors">
+    <li *ngFor="let e of errors" class="warn-text fs-6">
         {{ e }}
     </li>
 </div>

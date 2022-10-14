@@ -9,6 +9,10 @@ import { EffectsModule } from '@ngrx/effects'
 import { ArticleService } from '../shared/services/article.service'
 import { GetArticleEffects } from './store/effects/get-article.effects'
 import { AngularMaterialModule } from '../shared/modules/angular-material.module'
+import { BackendErrorsModule } from '../shared/modules/backend-errors/backend-errors.module'
+import { DeleteArticleEffects } from './store/effects/delete-article.effects'
+import { TagListModule } from '../shared/modules/tag-list/tag-list.module'
+import { ProfileInfoModule } from '../shared/modules/profile-info/profile-info.module'
 
 const routes = [{ path: 'article/:slug', component: ArticleComponent }]
 
@@ -19,8 +23,11 @@ const routes = [{ path: 'article/:slug', component: ArticleComponent }]
         HttpClientModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature(articleFeatureKey, articleReducer),
-        EffectsModule.forFeature([GetArticleEffects]),
+        EffectsModule.forFeature([GetArticleEffects, DeleteArticleEffects]),
         AngularMaterialModule,
+        BackendErrorsModule,
+        TagListModule,
+        ProfileInfoModule,
     ],
     providers: [ArticleService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

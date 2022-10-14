@@ -1,0 +1,48 @@
+<form [formGroup]="form">
+    <div class="d-flex mb-4">
+        <div class="me-auto fs-2">{{ header }}</div>
+        <div>
+            <button
+                mat-raised-button
+                color="primary"
+                [disabled]="isLoading$ | async"
+                (click)="onSubmit()"
+            >
+                PUBLISH
+            </button>
+        </div>
+    </div>
+    <mat-form-field appearance="fill" class="fs-6">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title" />
+        <mat-error>Enter valid Title</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="fs-6">
+        <mat-label>Content (in markdown)</mat-label>
+        <textarea
+            matInput
+            type="text"
+            formControlName="body"
+            rows="6"
+            cdkTextareaAutosize
+        ></textarea>
+        <mat-error>Enter valid content</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" [style.fontSize]="'small'">
+        <mat-label>Description</mat-label>
+        <textarea
+            matInput
+            type="text"
+            formControlName="description"
+            cdkTextareaAutosize
+        ></textarea>
+        <mat-error>Enter a valid description of your post</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" [style.fontSize]="'small'">
+        <mat-label>Tags to include</mat-label>
+        <input matInput type="text" formControlName="tagList" />
+        <mat-error>Enter valid tags</mat-error>
+    </mat-form-field>
+
+    <div class="text-end mt-2"></div>
+</form>

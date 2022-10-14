@@ -7,9 +7,10 @@
                     >Need an account?</a
                 >
             </div>
-            <div class="mb-4 ms-3" *ngIf="errors$ | async as errors">
-                <mc-valid-errors [errors]="errors"></mc-valid-errors>
-            </div>
+            <mc-valid-errors
+                [errors]="errors$"
+                class="mb-4 ms-3"
+            ></mc-valid-errors>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
@@ -27,7 +28,7 @@
                 </mat-form-field>
                 <div class="text-end mt-2">
                     <button
-                        mat-flat-button
+                        mat-raised-button
                         color="primary"
                         [disabled]="isSubmitting$ | async"
                     >

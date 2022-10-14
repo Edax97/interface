@@ -1,8 +1,11 @@
-img {
-    border-radius: 50%;
-}
-
 .profile-pic {
     border-radius: 50%;
     height: 48px;
+}
+
+.mat-stroked-button {
+    padding: 0 6px;
+    min-width: 48px;
+    line-height: 200%;
+    overflow: hidden;
 }

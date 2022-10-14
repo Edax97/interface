@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { Subscription, tap } from 'rxjs'
+import { combineLatest, filter, map, Subscription, tap } from 'rxjs'
+import { currentUserSelector } from 'src/app/auth/store/selectors'
+import { CurrentUserInterface } from 'src/app/auth/types/current-user.interface'
 import { AppStateInterface } from 'src/app/shared/types/app-state.interface'
+import { ArticleInterface } from 'src/app/shared/types/article.interface'
+import { deleteArticleAction } from '../../store/actions/deleteArticle.actions'
 import { getArticleAction } from '../../store/actions/getArticle.actions'
 import {
-    authorSelector,
     commentsSelector,
     errorsSelector,
     isLoadingSelector,
-    postSelector,
+    articleSelector,
 } from '../../store/selectors'
 
 @Component({
@@ -17,39 +20,49 @@ import {
     styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-    subs: Subscription
+    slug: string
 
     isLoading$ = this.store.pipe(select(isLoadingSelector))
     errors$ = this.store.pipe(select(errorsSelector))
-    post$ = this.store.pipe(select(postSelector))
-    author$ = this.store.pipe(select(authorSelector))
+    article$ = this.store.pipe(select(articleSelector))
+    tags$ = this.article$.pipe(map((article) => article.tagList))
     comments$ = this.store.pipe(select(commentsSelector))
+    currentUser$ = this.store.pipe(select(currentUserSelector))
+    isAuthor$ = combineLatest([this.article$, this.currentUser$]).pipe(
+        map(
+            ([article, currentUser]: [
+                ArticleInterface,
+                CurrentUserInterface
+            ]) => {
+                if (!article || !currentUser) return false
+                return article.author.username == currentUser.username
+            }
+        )
+    )
+    username$ = this.article$.pipe(
+        filter((article) => article != null),
+        map((article) => article.author.username)
+    )
 
     constructor(
         private route: ActivatedRoute,
         private store: Store<AppStateInterface>
     ) {
-        this.getParams()
+        this.initializeValues()
+        this.initActions(this.slug)
     }
 
-    getParams() {
-        this.subs = this.route.params
-            .pipe(
-                tap((params) => {
-                    console.log(params)
-                    this.initActions(params['slug'])
-                })
-            )
-            .subscribe()
+    initializeValues() {
+        this.slug = this.route.snapshot.params['slug']
     }
 
     initActions(slug: string) {
         this.store.dispatch(getArticleAction({ slug }))
     }
 
-    ngOnInit(): void {}
-
-    ngOnDestroy(): void {
-        this.subs.unsubscribe()
+    onDelete() {
+        this.store.dispatch(deleteArticleAction({ slug: this.slug }))
     }
+
+    ngOnInit(): void {}
 }

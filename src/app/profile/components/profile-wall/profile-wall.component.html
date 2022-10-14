@@ -1,0 +1,58 @@
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <div class="container mt-3 mt-sm-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div class="d-md-none mb-3">
+                        <mc-profile-banner
+                            [username]="username$"
+                        ></mc-profile-banner>
+                    </div>
+                    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+                        <a
+                            mat-tab-link
+                            [active]="fav == null"
+                            [routerLink]="['/profile', username]"
+                        >
+                            Home
+                        </a>
+                        <a
+                            mat-tab-link
+                            [active]="fav != null"
+                            [routerLink]="['/profile', username]"
+                            [queryParams]="{ fav: true }"
+                        >
+                            Liked Posts
+                        </a>
+                    </nav>
+                    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+                    <mc-valid-errors [errors]="errors$"></mc-valid-errors>
+                    <mat-spinner
+                        class="d-flex m-auto mt-3"
+                        *ngIf="isLoading$ | async"
+                    ></mat-spinner>
+
+                    <mc-feed
+                        class="feed pt-4"
+                        (updatePage)="updatePage($event)"
+                    ></mc-feed>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+    <mat-sidenav
+        mode="side"
+        position="end"
+        opened
+        fixedInViewport
+        fixedTopGap="64"
+        class="d-none d-md-block"
+    >
+        <div class="profile ps-5 pt-5 pe-4">
+            <mc-profile-info [username]="username$"></mc-profile-info>
+        </div>
+    </mat-sidenav>
+</mat-sidenav-container>
+<!--
+    
+-->

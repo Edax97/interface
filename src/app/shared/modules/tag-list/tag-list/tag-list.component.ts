@@ -6,6 +6,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core'
+import { Observable } from 'rxjs'
 
 @Component({
     selector: 'mc-tag-list',
@@ -14,8 +15,8 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagListComponent implements OnInit {
-    @Input() list: string[]
-    @Input() tag: string = ''
+    @Input('tags') tags$: Observable<string[]>
+    @Input('tag') tag: string
     @Output() tagFeedE = new EventEmitter<string>()
     constructor() {}
     getTagFeed(t: string) {

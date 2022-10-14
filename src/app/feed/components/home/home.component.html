@@ -10,22 +10,26 @@
                     [isLogged]="isLogged$ | async"
                 ></mc-toggler>
             </div>
-            <div class="mt-2">
-                <mc-feed
-                    [articles]="articles$ | async"
-                    [total]="total$ | async"
-                    (updatePage)="updatePage($event)"
-                ></mc-feed>
-            </div>
+            <mc-valid-errors [errors]="errors$" class="mt-2"></mc-valid-errors>
+            <mat-spinner
+                class="d-flex m-auto mt-3"
+                *ngIf="isLoading$ | async"
+            ></mat-spinner>
+
+            <mc-feed
+                class="feed mt-2"
+                (updatePage)="updatePage($event)"
+            ></mc-feed>
         </div>
         <div class="col-xl-1 d-none d-xl-block"></div>
-        <div class="col-12 col-md-3 col-xl-4">
-            <div>
-                <mc-tag-list
-                    [list]="tagList$ | async"
-                    [tag]="tag$ | async"
-                ></mc-tag-list>
-            </div>
+        <div class="tags col-12 col-md-3 col-xl-4 ps-md-4">
+            <div class="mb-2">Discover more</div>
+            <mc-tag-list [tags]="tagList$" [tag]="tag"></mc-tag-list>
+            <mc-valid-errors [errors]="tagsErrors$"></mc-valid-errors>
+            <mat-spinner
+                class="d-flex m-auto mt-3"
+                *ngIf="tagSLoading$ | async"
+            ></mat-spinner>
         </div>
     </div>
     <div class="row mt-4"></div>

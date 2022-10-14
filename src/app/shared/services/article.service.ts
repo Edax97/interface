@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { map } from 'rxjs'
+import { map, tap } from 'rxjs'
 import { environment } from 'src/environments/environment'
+import { ArticleResponseInterface } from '../types/article-response.interface'
+import { ArticleInterface } from '../types/article.interface'
 
 const api = environment.API
 
@@ -9,8 +11,14 @@ const api = environment.API
 export class ArticleService {
     getArticle(slug: string) {
         return this.http
-            .get<any>(api + 'articles/' + slug)
+            .get<ArticleResponseInterface>(api + 'articles/' + slug)
             .pipe(map(({ article }) => article))
+    }
+
+    deleteArticle(slug: string) {
+        return this.http
+            .delete<any>(api + 'articles/' + slug)
+            .pipe(tap((res) => console.log(res)))
     }
 
     constructor(private http: HttpClient) {}

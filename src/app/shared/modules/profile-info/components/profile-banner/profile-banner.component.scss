@@ -1,0 +1,29 @@
+/*
+Breakpoints
+*/
+$breakpoints: (
+    'extra-small': 370px,
+    'small': 595px,
+    'medium': 768px,
+    'large': 1080px,
+) !default;
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 72px;
+}
+
+.responsive-width {
+    width: 20vw;
+}
+
+button {
+    font-size: small;
+}

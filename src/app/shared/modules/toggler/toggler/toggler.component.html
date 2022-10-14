@@ -13,12 +13,7 @@
     >
         Global feed
     </a>
-    <a
-        mat-tab-link
-        [active]="page == 'articles' && tag"
-        [routerLink]="['/tag-feed', tag]"
-        *ngIf="tag"
-    >
+    <a mat-tab-link [active]="page == 'articles' && tag" *ngIf="tag">
         {{ '#' + tag }}
     </a>
 </nav>

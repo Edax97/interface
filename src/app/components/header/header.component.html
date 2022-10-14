@@ -22,9 +22,9 @@
 </mat-toolbar>
 
 <ng-template #login>
-    <a [routerLink]="['/editor']">Create</a>
+    <a [routerLink]="['/new', 'article']">Create</a>
 
-    <a [routerLink]="['/profile', [username$ | async]]">{{
+    <a [routerLink]="['/profile', username$ | async]">{{
         username$ | async
     }}</a>
     <a [mat-menu-trigger-for]="options" mat-icon-button>

@@ -24,7 +24,6 @@ body {
 }
 body {
     margin: 0;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 a {
@@ -49,4 +48,11 @@ a {
 
 .bold {
     font-weight: 600;
+}
+.mat-form-field {
+    display: block;
+}
+
+.new-line {
+    white-space: pre-line;
 }

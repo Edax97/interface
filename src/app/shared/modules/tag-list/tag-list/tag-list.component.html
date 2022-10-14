@@ -1,9 +1,8 @@
-<div class="mb-2">Discover more</div>
-
-<mat-chip-list>
+<mat-chip-list *ngIf="tags$ | async as tags">
     <mat-chip
-        *ngFor="let tagName of list"
-        [routerLink]="['/tag-feed', tagName]"
+        *ngFor="let tagName of tags"
+        [routerLink]="['/feed', 'articles']"
+        [queryParams]="{ tag: tagName }"
         color="accent"
         [selected]="tag == tagName"
     >

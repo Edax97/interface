@@ -1,0 +1,41 @@
+<div class="mt-2">
+    <mc-valid-errors [errors]="errors$"></mc-valid-errors>
+    <mat-spinner class="d-flex m-auto" *ngIf="isLoading$ | async"></mat-spinner>
+    <div *ngIf="profile$ | async as profile">
+        <div class="d-flex">
+            <img class="profile-pic me-2" [src]="profile.image" alt="" />
+            <div
+                class="username fs-5 me-3"
+                role="button"
+                [routerLink]="['/profile', profile.username]"
+            >
+                {{ profile.username }}
+            </div>
+            <div class="follow ms-auto">
+                <button
+                    mat-stroked-button
+                    *ngIf="profile.following; else follow"
+                    [disabled]="followLoading$ | async"
+                    (click)="onFollow(profile.username, true)"
+                >
+                    UNFOLLOW
+                </button>
+                <ng-template #follow>
+                    <button
+                        mat-raised-button
+                        color="accent"
+                        [disabled]="followLoading$ | async"
+                        (click)="onFollow(profile.username, false)"
+                    >
+                        FOLLOW
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+        <div *ngIf="profile.bio as bio" class="bio mt-3">
+            {{ bio }}
+        </div>
+    </div>
+</div>
+
+<ng-template #unfollow> </ng-template>
