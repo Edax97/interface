@@ -14,7 +14,7 @@ import { DeleteArticleEffects } from './store/effects/delete-article.effects'
 import { TagListModule } from '../shared/modules/tag-list/tag-list.module'
 import { ProfileInfoModule } from '../shared/modules/profile-info/profile-info.module'
 
-const routes = [{ path: 'article/:slug', component: ArticleComponent }]
+const routes = [{ path: ':slug', component: ArticleComponent }]
 
 @NgModule({
     declarations: [ArticleComponent],

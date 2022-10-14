@@ -17,8 +17,8 @@ import { EditArticleService } from './services/edit-article.service'
 import { UpdateArticleEffects } from './store/effects/update-article.effects'
 
 const routes = [
-    { path: 'new/article', component: NewArticleComponent },
-    { path: 'article/:slug/edit', component: EditArticleComponent },
+    { path: '', component: NewArticleComponent },
+    { path: ':slug', component: EditArticleComponent },
 ]
 
 @NgModule({
