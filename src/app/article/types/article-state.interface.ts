@@ -7,5 +7,4 @@ export interface ArticleStateInterface {
     isLoading: boolean
     errors: BackendErrorsInterface | null
     article: ArticleInterface | null
-    comments: CommentInterface[] | null
 }

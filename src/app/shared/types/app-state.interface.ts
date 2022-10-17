@@ -6,8 +6,9 @@ import { editArticleFeatureKey } from 'src/app/edit-article/store/reducers'
 import { EditArticleStateInterface } from 'src/app/edit-article/types/edit-article-state.interface'
 import { feedFeatureKey } from '../modules/articles-feed/store/reducers'
 import { FeedStateInterface } from '../modules/articles-feed/types/feed-state.interface'
+import { commentsFeatureKey } from '../modules/comments/store/reducers'
+import { CommentsStateInterface } from '../modules/comments/types/comments-state.interface'
 import { profileFeatureKey } from '../modules/profile-info/store/reducers'
-import { profileFeatureSelector } from '../modules/profile-info/store/selectors'
 import { ProfileStateInterface } from '../modules/profile-info/types/profile-state.interface'
 
 export interface AppStateInterface {
@@ -16,4 +17,5 @@ export interface AppStateInterface {
     [articleFeatureKey]: ArticleStateInterface
     [editArticleFeatureKey]: EditArticleStateInterface
     [profileFeatureKey]: ProfileStateInterface
+    [commentsFeatureKey]: CommentsStateInterface
 }

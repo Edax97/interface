@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { combineLatest, filter, map, Subscription, tap } from 'rxjs'
+import { combineLatest, filter, map, Observable, Subscription, tap } from 'rxjs'
 import { currentUserSelector } from 'src/app/auth/store/selectors'
 import { CurrentUserInterface } from 'src/app/auth/types/current-user.interface'
+import { favPostAction } from 'src/app/shared/modules/articles-feed/store/actions/favPost.actions'
+import { favLoadingSelector } from 'src/app/shared/modules/articles-feed/store/selectors'
 import { AppStateInterface } from 'src/app/shared/types/app-state.interface'
 import { ArticleInterface } from 'src/app/shared/types/article.interface'
 import { deleteArticleAction } from '../../store/actions/deleteArticle.actions'
 import { getArticleAction } from '../../store/actions/getArticle.actions'
 import {
-    commentsSelector,
     errorsSelector,
     isLoadingSelector,
     articleSelector,
@@ -21,24 +22,18 @@ import {
 })
 export class ArticleComponent implements OnInit {
     slug: string
+    showComments = false
 
     isLoading$ = this.store.pipe(select(isLoadingSelector))
     errors$ = this.store.pipe(select(errorsSelector))
     article$ = this.store.pipe(select(articleSelector))
     tags$ = this.article$.pipe(map((article) => article.tagList))
-    comments$ = this.store.pipe(select(commentsSelector))
+
+    favLoading$ = this.store.pipe(select(favLoadingSelector))
+
     currentUser$ = this.store.pipe(select(currentUserSelector))
-    isAuthor$ = combineLatest([this.article$, this.currentUser$]).pipe(
-        map(
-            ([article, currentUser]: [
-                ArticleInterface,
-                CurrentUserInterface
-            ]) => {
-                if (!article || !currentUser) return false
-                return article.author.username == currentUser.username
-            }
-        )
-    )
+    isAuthor$: Observable<boolean>
+
     username$ = this.article$.pipe(
         filter((article) => article != null),
         map((article) => article.author.username)
@@ -54,6 +49,17 @@ export class ArticleComponent implements OnInit {
 
     initializeValues() {
         this.slug = this.route.snapshot.params['slug']
+        this.isAuthor$ = combineLatest([this.article$, this.currentUser$]).pipe(
+            map(
+                ([article, currentUser]: [
+                    ArticleInterface,
+                    CurrentUserInterface
+                ]) => {
+                    if (!article || !currentUser) return false
+                    return article.author.username == currentUser.username
+                }
+            )
+        )
     }
 
     initActions(slug: string) {
@@ -62,6 +68,10 @@ export class ArticleComponent implements OnInit {
 
     onDelete() {
         this.store.dispatch(deleteArticleAction({ slug: this.slug }))
+    }
+
+    onFav(slug: string, upvoted: boolean) {
+        this.store.dispatch(favPostAction({ slug, upvoted }))
     }
 
     ngOnInit(): void {}

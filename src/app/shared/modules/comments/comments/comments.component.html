@@ -1,0 +1,39 @@
+<mat-spinner *ngIf="isLoading$ | async" class="d-flex m-auto"></mat-spinner>
+
+<div *ngIf="comments$ | async as comments">
+    <div *ngFor="let comment of comments" class="pb-4">
+        <hr />
+
+        <div *ngIf="(deleteLoading$ | async) == comment.id; else commentPosted">
+            <mat-spinner class="d-flex m-auto"></mat-spinner>
+        </div>
+
+        <ng-template #commentPosted>
+            <div class="body mb-2 lh-base d-flex">
+                <div class="me-auto">
+                    {{ comment.body }}
+                </div>
+                <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="onDelete(comment.id)"
+                    *ngIf="
+                        comment.author.username == (currentUsername$ | async)
+                    "
+                    [disabled]="(deleteLoading$ | async) == comment.id"
+                >
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </div>
+
+            <div class="meta fs-sm">
+                <a
+                    class="me-2 primary-text"
+                    [routerLink]="['/profile', comment.author.username]"
+                    >{{ comment.author.username }}</a
+                >
+                <span>{{ comment.updatedAt }}</span>
+            </div>
+        </ng-template>
+    </div>
+</div>

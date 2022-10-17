@@ -5,6 +5,7 @@ import {
     deleteArticleFailureAction,
     deleteArticleSuccesAction,
 } from './actions/deleteArticle.actions'
+import { favArticleAction } from './actions/favArticle'
 import {
     getArticleAction,
     getArticleFailureAction,
@@ -15,7 +16,6 @@ const initialState: ArticleStateInterface = {
     errors: null,
     isLoading: false,
     article: null,
-    comments: null,
 }
 
 export const articleReducer = createReducer(
@@ -72,6 +72,14 @@ export const articleReducer = createReducer(
             ...state,
             errors,
             isLoading: false,
+        })
+    ),
+
+    on(
+        favArticleAction,
+        (state, { favorited, favoritesCount }): ArticleStateInterface => ({
+            ...state,
+            article: { ...state.article, favorited, favoritesCount },
         })
     )
 )

@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatChipsModule } from '@angular/material/chips'
 import { MatTabsModule } from '@angular/material/tabs'
+import { MatButtonToggleModule } from '@angular/material/button-toggle'
 @NgModule({
     exports: [
         MatButtonModule,
@@ -33,6 +34,7 @@ import { MatTabsModule } from '@angular/material/tabs'
         MatMenuModule,
         MatChipsModule,
         MatTabsModule,
+        MatButtonToggleModule,
     ],
 })
 export class AngularMaterialModule {}

@@ -30,7 +30,6 @@ export class UpdateSettingsComponent implements OnInit {
     retrieveUser() {
         this.currentUser$.subscribe((user: CurrentUserInterface) => {
             if (!user) return
-            console.log('Current user', user)
             this.currentUser = user
             this.updateForm()
         })

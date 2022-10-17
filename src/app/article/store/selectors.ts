@@ -21,8 +21,3 @@ export const articleSelector = createSelector(
     articleFeatureSelector,
     (articleState: ArticleStateInterface) => articleState?.article
 )
-
-export const commentsSelector = createSelector(
-    articleFeatureSelector,
-    (articleState: ArticleStateInterface) => articleState?.comments
-)

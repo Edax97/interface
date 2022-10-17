@@ -48,7 +48,6 @@ export class ProfileInfoComponent implements OnInit {
             this.currentUser$,
         ]).pipe(
             map(([username, currentUser]) => {
-                console.log(username, currentUser.username)
                 if (!username || !currentUser) return false
                 return username == currentUser.username
             })

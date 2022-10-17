@@ -3,11 +3,11 @@ export enum ActionTypes {
     GET_ARTICLE_SUCCESS = '[Article] Get Article success',
     GET_ARTICLE_FAILURE = '[Article] Get Article failure',
 
+    FAV_ARTICLE = '[Article] FAV Article',
+    FAV_ARTICLE_SUCCESS = '[Article] FAV Article success',
+    FAV_ARTICLE_FAILURE = '[Article] FAV Article failure',
+
     DELETE_ARTICLE = '[Article] Delete Article',
     DELETE_ARTICLE_SUCCESS = '[Article] Delete Article success',
     DELETE_ARTICLE_FAILURE = '[Article] Delete Article failure',
-
-    UPDATE_ARTICLE = '[Article] Update Article',
-    UPDATE_ARTICLE_SUCCESS = '[Article] Update Article success',
-    UPDATE_ARTICLE_FAILURE = '[Article] Update Article failure',
 }

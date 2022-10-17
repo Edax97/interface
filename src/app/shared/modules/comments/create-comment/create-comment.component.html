@@ -1,0 +1,32 @@
+<form
+    [formGroup]="form"
+    *ngIf="currentUser$ | async as user"
+    (ngSubmit)="onPostComment()"
+>
+    <mat-form-field appearance="outline">
+        <mat-label>Write your thoughts</mat-label>
+        <textarea
+            matInput
+            type="text"
+            formControlName="body"
+            rows="3"
+            cdkTextareaAutosize
+        ></textarea>
+        <mat-error>Enter valid comment</mat-error>
+    </mat-form-field>
+    <div class="d-flex">
+        <div class="me-auto">
+            <a [routerLink]="['/profile', user.username]">
+                <img [src]="user.image" alt="" />
+            </a>
+        </div>
+        <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            [disabled]="isLoading$ | async"
+        >
+            POST
+        </button>
+    </div>
+</form>

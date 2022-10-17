@@ -104,11 +104,13 @@ export const feedReducer = createReducer(
     on(
         favPostSuccessAction,
         (state, { favorited, favoritesCount }): FeedStateInterface => {
-            const currentArticles = state.currentArticles.map((article) => {
-                if (article.slug == state.favLoading)
-                    return { ...article, favorited, favoritesCount }
-                return article
-            })
+            let currentArticles = null
+            if (state.currentArticles)
+                currentArticles = state.currentArticles.map((article) => {
+                    if (article.slug == state.favLoading)
+                        return { ...article, favorited, favoritesCount }
+                    return article
+                })
             return {
                 ...state,
                 currentArticles,

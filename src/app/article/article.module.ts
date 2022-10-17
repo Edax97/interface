@@ -13,7 +13,8 @@ import { BackendErrorsModule } from '../shared/modules/backend-errors/backend-er
 import { DeleteArticleEffects } from './store/effects/delete-article.effects'
 import { TagListModule } from '../shared/modules/tag-list/tag-list.module'
 import { ProfileInfoModule } from '../shared/modules/profile-info/profile-info.module'
-import { AuthInterceptorService } from '../shared/services/auth-interceptor.service'
+import { AuthInterceptorService } from '../shared/services/auth-interceptor.service';
+import { CommentsModule } from '../shared/modules/comments/comments.module'
 
 const routes = [{ path: ':slug', component: ArticleComponent }]
 
@@ -29,6 +30,7 @@ const routes = [{ path: ':slug', component: ArticleComponent }]
         BackendErrorsModule,
         TagListModule,
         ProfileInfoModule,
+        CommentsModule,
     ],
     providers: [
         ArticleService,
