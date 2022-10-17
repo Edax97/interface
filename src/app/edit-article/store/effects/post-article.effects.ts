@@ -18,7 +18,6 @@ export class PostArticleEffects {
         this.actions$.pipe(
             ofType(postArticleAction),
             switchMap(({ article }) => {
-                console.log('article', article)
                 return this.editArticleService.postArticle({ article }).pipe(
                     map((res: ArticleResponseInterface) => {
                         return postArticleSuccesAction({

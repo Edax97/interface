@@ -23,7 +23,6 @@ export class UpdateArticleEffects {
             withLatestFrom(this.store.select(articleSelector)),
             switchMap(([{ slug, editArticle }, article]) => {
                 article = { ...article, ...editArticle }
-                console.log('article updated', article)
                 return this.editArticleService
                     .updateArticle(slug, article)
                     .pipe(

@@ -66,7 +66,6 @@ export const editArticleReducer = createReducer(
             ...state,
             isLoading: true,
             errors: null,
-            article: null,
         })
     ),
 

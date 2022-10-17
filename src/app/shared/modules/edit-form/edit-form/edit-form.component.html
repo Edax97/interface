@@ -1,12 +1,12 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="d-flex mb-4">
         <div class="me-auto fs-2">{{ header }}</div>
         <div>
             <button
                 mat-raised-button
                 color="primary"
+                type="submit"
                 [disabled]="isLoading$ | async"
-                (click)="onSubmit()"
             >
                 PUBLISH
             </button>

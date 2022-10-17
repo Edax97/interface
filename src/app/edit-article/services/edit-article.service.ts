@@ -12,13 +12,12 @@ const api = environment.API
 export class EditArticleService {
     updateArticle(slug: string, article: ArticleInterface) {
         return this.http.put<ArticleResponseInterface>(
-            api + '/articles/' + slug,
+            api + 'articles/' + slug,
             { article }
         )
     }
 
     postArticle(data: NewArticlePayloadInterface) {
-        console.log('Post article')
         return this.http
             .post<ArticleResponseInterface>(api + 'articles/', data)
             .pipe(
@@ -28,7 +27,5 @@ export class EditArticleService {
             )
     }
 
-    constructor(private http: HttpClient) {
-        console.log('START EDIT ARTICLE SERVICE')
-    }
+    constructor(private http: HttpClient) {}
 }

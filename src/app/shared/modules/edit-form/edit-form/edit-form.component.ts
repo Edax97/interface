@@ -21,7 +21,7 @@ export class EditFormComponent implements OnInit, OnDestroy {
     @Input('loading') isLoading$: Observable<boolean>
     @Input() header: string
     @Input('article') editArticle$: Observable<EditArticleInterface | null>
-    @Output('submit') sendArticle = new EventEmitter<EditArticleInterface>()
+    @Output('submitPost') sendArticle = new EventEmitter<EditArticleInterface>()
     form: FormGroup
     editSubs: Subscription
 
@@ -30,7 +30,7 @@ export class EditFormComponent implements OnInit, OnDestroy {
             title: new FormControl('', Validators.required),
             body: new FormControl('', Validators.required),
             description: new FormControl('', Validators.required),
-            tagList: new FormControl('', Validators.required),
+            tagList: new FormControl(''),
         })
         this.editSubs = this.editArticle$
             .pipe(
@@ -47,7 +47,9 @@ export class EditFormComponent implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-        const tagList = this.form.value.tagList.split(' ')
+        const tagList = this.form.value.tagList
+            ? this.form.value.tagList.split(' ')
+            : []
         const article = { ...this.form.value, tagList }
         this.sendArticle.emit(article)
     }

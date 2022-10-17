@@ -6,7 +6,7 @@
                 header="Edit post"
                 [article]="editArticle$"
                 [loading]="isLoading$"
-                (submit)="onSubmit($event)"
+                (submitPost)="onSubmit($event)"
             ></mc-edit-form>
             <mc-valid-errors [errors]="errors$"></mc-valid-errors>
         </div>
